@@ -1,11 +1,9 @@
 package se.ecutb.fullstack_todo.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 public class AppUser {
@@ -13,11 +11,23 @@ public class AppUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int userId;
+    @Column(unique = true)
     private String username;
     private String firstName;
     private String lastName;
     private LocalDate regDate;
     private String password;
+
+    @ManyToMany(
+            cascade = CascadeType.MERGE,
+            fetch = FetchType.LAZY
+    )
+    @JoinTable(
+                    name = "app_user_user_role",
+                    joinColumns = @JoinColumn(name = "app_user"),
+                    inverseJoinColumns = @JoinColumn(name = "user_role")
+    )
+    Set<AppUserRole> roleSet;
 
     public AppUser(String username, String firstName, String lastName, LocalDate regDate, String password) {
         this.username = username;
@@ -32,10 +42,6 @@ public class AppUser {
 
     public int getUserId() {
         return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 
     public String getUsername() {
@@ -76,6 +82,14 @@ public class AppUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<AppUserRole> getRoleSet() {
+        return roleSet;
+    }
+
+    public void setRoleSet(Set<AppUserRole> roleSet) {
+        this.roleSet = roleSet;
     }
 
     @Override
