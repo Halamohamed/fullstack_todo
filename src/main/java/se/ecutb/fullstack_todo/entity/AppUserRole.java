@@ -14,6 +14,8 @@ public class AppUserRole {
     @Column(unique = true)
     private String role;
 
+
+
     public AppUserRole(String role) {
         this.role = role;
     }

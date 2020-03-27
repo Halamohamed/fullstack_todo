@@ -2,6 +2,8 @@ package se.ecutb.fullstack_todo.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -18,6 +20,11 @@ public class AppUser {
     private LocalDate regDate;
     private String password;
 
+
+    @OneToMany(mappedBy = "userName")
+    private List<TodoItem> todoItems = new ArrayList<>();
+
+
     @ManyToMany(
             cascade = CascadeType.MERGE,
             fetch = FetchType.LAZY
@@ -28,6 +35,8 @@ public class AppUser {
                     inverseJoinColumns = @JoinColumn(name = "user_role")
     )
     Set<AppUserRole> roleSet;
+
+
 
     public AppUser(String username, String firstName, String lastName, LocalDate regDate, String password) {
         this.username = username;
