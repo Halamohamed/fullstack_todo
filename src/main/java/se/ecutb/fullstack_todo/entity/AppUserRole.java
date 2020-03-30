@@ -23,6 +23,7 @@ public class AppUserRole {
     public AppUserRole() {
     }
 
+
     public int getRoleId() {
         return roleId;
     }

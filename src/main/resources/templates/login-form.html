@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head><link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>login </title>
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2 class="bg-dark text-danger card-header font-weight-light">Login</h2>
+            <div class="card-body">
+                <div class="mb-2" th:if="${param.error}">
+                    <span class="card-text text-danger text-sm-left">Invalid username or password</span>
+                </div>
+                <div class="mb-2" th:if="${param.logout}">
+                    <span class="card-text text-danger text-sm-left">You have been logged out</span>
+                </div>
+                <form th:action="@{/login}" method="post">
+                    <div class="input-group mb-2">
+                       <span class="input-group-text">Username:</span>
+                    </div>
+                    <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username"/>
+
+                    <div class="input-group mb-2">
+                        <span class="input-group-text">Password:</span>
+                    </div>
+                    <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"/>
+
+                    <button type="submit" class="btn-primary text-danger" >Login</button>
+
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

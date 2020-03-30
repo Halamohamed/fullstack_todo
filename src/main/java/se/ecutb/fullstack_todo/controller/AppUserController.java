@@ -32,4 +32,9 @@ public class AppUserController {
 
         return "register";
     }
+
+    @GetMapping("/login")
+    public String getLogin(){
+        return "login-form";
+    }
 }
