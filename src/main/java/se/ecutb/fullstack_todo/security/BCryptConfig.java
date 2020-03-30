@@ -1,4 +1,4 @@
-package security;
+package se.ecutb.fullstack_todo.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
