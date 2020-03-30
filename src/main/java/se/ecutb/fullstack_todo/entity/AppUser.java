@@ -2,10 +2,7 @@ package se.ecutb.fullstack_todo.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 public class AppUser {
@@ -42,6 +39,11 @@ public class AppUser {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.regDate = regDate;
+        this.password = password;
+    }
+    public AppUser(String username,LocalDate regDate, String password) {
+        this.username = username;
         this.regDate = regDate;
         this.password = password;
     }

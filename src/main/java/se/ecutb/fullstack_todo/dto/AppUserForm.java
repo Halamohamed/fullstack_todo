@@ -13,6 +13,11 @@ public class AppUserForm {
     private String password;
     @NotBlank(message = "You need to confirm your password")
     private String passwordConfirm;
+    @NotBlank(message = "First name is required")
+    private String firstName;
+    @NotBlank(message = "Last name is required")
+    private String lastName;
+
 
     public String getUsername() {
         return username;
@@ -36,5 +41,21 @@ public class AppUserForm {
 
     public void setPasswordConfirm(String passwordConfirm) {
         this.passwordConfirm = passwordConfirm;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
