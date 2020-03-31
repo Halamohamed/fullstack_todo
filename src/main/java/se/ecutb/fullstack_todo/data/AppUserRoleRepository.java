@@ -6,7 +6,7 @@ import se.ecutb.fullstack_todo.entity.Roles;
 
 public interface AppUserRoleRepository extends CrudRepository<AppUserRole, Integer> {
 
-    AppUserRole findByRole(Roles role);
+    AppUserRole findByRole(String role);
 
 
 

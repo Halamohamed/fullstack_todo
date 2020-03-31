@@ -39,7 +39,7 @@ public class MainAppUser {
     @PostConstruct
     @Transactional(rollbackFor = RuntimeException.class)
     public void init(){
-        AppUser user = new AppUser("ADMIN", "Hala","Ali",LocalDate.now(),passwordEncoder.encode("ADMIN"));
+        AppUser user = new AppUser("admin", "Hala","Ali",LocalDate.now(),passwordEncoder.encode("admin"));
         Set<AppUserRole> roleSet = Arrays.stream(Roles.values())
                 .map(role -> appUserRole.save(new AppUserRole(role.name())))
                 .collect(Collectors.toSet());
@@ -47,7 +47,7 @@ public class MainAppUser {
 
 
         userRepository.save(user);
-       // service.registerAppUser(new AppUserForm());
+        System.out.println(service.findByUsername("admin"));
 
     }
 

@@ -1,20 +1,26 @@
 package se.ecutb.fullstack_todo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import se.ecutb.fullstack_todo.data.AppUserRepository;
 import se.ecutb.fullstack_todo.data.AppUserRoleRepository;
 import se.ecutb.fullstack_todo.data.TodoItemRepository;
 import se.ecutb.fullstack_todo.dto.AppUserForm;
+import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.service.AppUserService;
 
 import javax.validation.Valid;
+import java.util.Optional;
 
 @Controller
 public class AppUserController {
@@ -53,6 +59,25 @@ public class AppUserController {
             return "/register";
         }
         service.registerAppUser(userForm);
+        return "redirect:/login";
+    }
+    @GetMapping("/users/{username}")
+    public String getUser(@PathVariable("username") String username, @AuthenticationPrincipal UserDetails user,Model model ){
+        if(user == null){
+            return "redirect:/login";
+        }
+
+        if(username.equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))){
+            Optional<AppUser> optionalAppUser = service.findByUsername(username);
+            if(optionalAppUser.isPresent()){
+                AppUser appUser = service.findByUsername(username).get();
+                model.addAttribute("appUser",appUser);
+                return "user-view";
+            }
+            else {
+                throw new IllegalArgumentException("Requested user not found");
+            }
+        }
         return "redirect:/login";
     }
 

@@ -43,7 +43,7 @@ public class AppUserServiceImpl implements AppUserService {
                 passwordEncoder.encode(appUserForm.getPassword())
 
         );
-        AppUserRole role = roleRepository.findByRole(Roles.USER);
+        AppUserRole role = roleRepository.findByRole(Roles.USER.name());
 
         Set<AppUserRole> roleSet = new HashSet<>();
 

@@ -9,13 +9,18 @@
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>User details</title>
 </head>
 <body>
-    <div class="container">
-        <h2>Welcome</h2>
-    </div>
+<div>
 
+    <p>First name</p>
+    <p th:text="${appUser.firstName}"></p>
+    <p>Last name</p>
+    <p th:text="${appUser.lastName}"></p>
+    <p>Registration date</p>
+    <p th:text="${appUser.regDate}"></p>
+</div>
 
 </body>
 </html>

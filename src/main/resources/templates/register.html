@@ -19,9 +19,9 @@
             <div class="mb-2" th:if="${param.error}">
                 <span class="card-text text-danger text-sm-left">This username is already in use</span>
             </div>
-<!--            <div class="mb-2" th:if="${param.logout}">-->
-<!--                <span class="card-text text-danger text-sm-left">You have been logged out</span>-->
-<!--            </div>-->
+           <div class="mb-2" th:if="${param.logout}">
+                <span class="card-text text-danger text-sm-left">You have been logged out</span>
+           </div>
             <form th:action="@{/register}" th:object="${form}" method="post">
                 <div class="input-group mb-2">
                     <span class="input-group-text">Username:</span>
