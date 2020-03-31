@@ -9,9 +9,54 @@
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Register</title>
 </head>
 <body>
+<div class="container">
+    <div>
+        <h2 class="bg-dark text-danger card-header font-weight-light">Register user</h2>
+        <div class="card-body">
+            <div class="mb-2" th:if="${param.error}">
+                <span class="card-text text-danger text-sm-left">This username is already in use</span>
+            </div>
+<!--            <div class="mb-2" th:if="${param.logout}">-->
+<!--                <span class="card-text text-danger text-sm-left">You have been logged out</span>-->
+<!--            </div>-->
+            <form th:action="@{/register}" method="post">
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Username:</span>
+                </div>
+                <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username"/>
+                <br>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">First name:</span>
+                </div>
+                <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Enter your first name"/>
+                <br>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Last name:</span>
+                </div>
+                <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Enter your last name"/>
+                <br>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Password:</span>
+                </div>
+                <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"/>
+                <br>
+                <div class="input-group mb-2">
+                    <span class="input-group-text">Confirm password:</span>
+                </div>
+                <input class="form-control" type="password" id="passwordconfirm" name="passwordconfirm" placeholder="Confirm your password"/>
+                <br>
+                <button type="submit" class="btn-dark text-white" >Register</button>
+            </form>
+
+
+        </div>
+    </div>
+</div>
 
 </body>
 </html>
+
+
