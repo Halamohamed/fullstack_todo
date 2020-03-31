@@ -1,4 +1,4 @@
-package se.ecutb.fullstack_todo.security;
+package se.ecutb.fullstack_todo.service;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -3,6 +3,7 @@ package se.ecutb.fullstack_todo.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 public class AppUserForm {
     @NotBlank(message = "Username is required")
@@ -17,6 +18,8 @@ public class AppUserForm {
     private String firstName;
     @NotBlank(message = "Last name is required")
     private String lastName;
+
+
 
 
     public String getUsername() {

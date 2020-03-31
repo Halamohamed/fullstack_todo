@@ -7,9 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 import se.ecutb.fullstack_todo.data.AppUserRepository;
 import se.ecutb.fullstack_todo.data.AppUserRoleRepository;
 import se.ecutb.fullstack_todo.data.TodoItemRepository;
+import se.ecutb.fullstack_todo.dto.AppUserForm;
 import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.entity.AppUserRole;
 import se.ecutb.fullstack_todo.entity.Roles;
+import se.ecutb.fullstack_todo.service.AppUserDetailsService;
+import se.ecutb.fullstack_todo.service.AppUserService;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
@@ -19,17 +22,18 @@ import java.util.stream.Collectors;
 
 @Component
 public class MainAppUser {
-    private AppUserRoleRepository appUserRoleRepository;
-    private AppUserRepository appUserRepository;
+    private AppUserRepository userRepository;
+    private AppUserRoleRepository appUserRole;
     private BCryptPasswordEncoder passwordEncoder;
     private TodoItemRepository todoItemRepository;
+    private AppUserService service;
 
     @Autowired
-    public MainAppUser(AppUserRoleRepository appUserRoleRepository, AppUserRepository appUserRepository, BCryptPasswordEncoder passwordEncoder, TodoItemRepository todoItemRepository) {
-        this.appUserRoleRepository = appUserRoleRepository;
-        this.appUserRepository = appUserRepository;
+    public MainAppUser(AppUserRoleRepository roleRepository, AppUserRepository repository, BCryptPasswordEncoder passwordEncoder, AppUserService service) {
+        this.userRepository = repository;
+        this.appUserRole = roleRepository;
         this.passwordEncoder = passwordEncoder;
-        this.todoItemRepository = todoItemRepository;
+        this.service = service;
     }
 
     @PostConstruct
@@ -37,10 +41,14 @@ public class MainAppUser {
     public void init(){
         AppUser user = new AppUser("ADMIN", "Hala","Ali",LocalDate.now(),passwordEncoder.encode("ADMIN"));
         Set<AppUserRole> roleSet = Arrays.stream(Roles.values())
-                .map(role -> appUserRoleRepository.save(new AppUserRole(role.name())))
+                .map(role -> appUserRole.save(new AppUserRole(role.name())))
                 .collect(Collectors.toSet());
         user.setRoleSet(roleSet);
-        appUserRepository.save(user);
+
+
+        userRepository.save(user);
+       // service.registerAppUser(new AppUserForm());
+
     }
 
 

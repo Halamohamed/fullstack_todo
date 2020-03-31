@@ -22,31 +22,31 @@
 <!--            <div class="mb-2" th:if="${param.logout}">-->
 <!--                <span class="card-text text-danger text-sm-left">You have been logged out</span>-->
 <!--            </div>-->
-            <form th:action="@{/register}" method="post">
+            <form th:action="@{/register}" th:object="${form}" method="post">
                 <div class="input-group mb-2">
                     <span class="input-group-text">Username:</span>
                 </div>
-                <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username"/>
+                <input class="form-control" type="text" id="username" name="username" th:field="*{username}" placeholder="Enter your username"/>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">First name:</span>
                 </div>
-                <input class="form-control" type="text" id="firstname" name="firstname" placeholder="Enter your first name"/>
+                <input class="form-control" type="text" id="firstname" name="firstname" th:field="*{firstName}" placeholder="Enter your first name"/>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Last name:</span>
                 </div>
-                <input class="form-control" type="text" id="lastname" name="lastname" placeholder="Enter your last name"/>
+                <input class="form-control" type="text" id="lastname" name="lastname" th:field="*{lastName}" placeholder="Enter your last name"/>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Password:</span>
                 </div>
-                <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"/>
+                <input class="form-control" type="password" id="password" name="password" th:field="*{password}" placeholder="Enter your password"/>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Confirm password:</span>
                 </div>
-                <input class="form-control" type="password" id="passwordconfirm" name="passwordconfirm" placeholder="Confirm your password"/>
+                <input class="form-control" type="password" id="passwordconfirm" name="passwordconfirm" th:field="*{passwordConfirm}" placeholder="Confirm your password"/>
                 <br>
                 <button type="submit" class="btn-dark text-white" >Register</button>
             </form>
