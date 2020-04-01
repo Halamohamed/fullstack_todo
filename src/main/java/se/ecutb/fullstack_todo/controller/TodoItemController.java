@@ -25,17 +25,15 @@ public class TodoItemController {
     }
 
     @GetMapping("/items")
-    public String getItems(){
-//        TodoItem todoItem = itemRepository.findByItemTitle(title).;
-//        if (todoItem != null){
-//            model.addAttribute("item", todoItem);
+    public String getItems(String title, Model model){
+        Optional<TodoItem> todoItem = itemRepository.findByItemTitle(title);
+        if (todoItem != null){
+            model.addAttribute("item", todoItem);
             return "items";
         }
-//        throw new IllegalArgumentException("Todo item is not found");
-//
-//    }
+        throw new IllegalArgumentException("Todo item is not found");
 
-
+    }
     @PostMapping("/items/create")
     public String createItem(@ModelAttribute("item") TodoItemForm todoItemForm, Model model){
         model.addAttribute("item", new TodoItemForm());
@@ -43,10 +41,8 @@ public class TodoItemController {
     }
 
     @GetMapping("/items/create")
-    public String getForm(Model model){
+    public String getForm(Model model) {
         model.addAttribute(("item"), new TodoItemForm());
         return "create-item";
     }
-
-
 }
