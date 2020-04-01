@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>Create Item</title>
+</head>
+<body>
+
+    <form th:action="@{/items}" th:object="${item}" method="post">
+        <div class="input-group mb-2">
+            <span class="input-group-text">Item title:</span>
+        </div>
+        <input class="form-control" type="text" id="title" name="title" th:field="*{itemTitle}" placeholder="Enter Item title"/>
+        <br>
+        <div class="input-group mb-2">
+            <span class="input-group-text">Description:</span>
+        </div>
+        <input class="form-control" type="text" id="description" name="description" th:field="*{itemDescription}" placeholder="Enter item description"/>
+        <br>
+        <div class="input-group mb-2">
+            <span class="input-group-text">Deadline:</span>
+        </div>
+        <input class="form-control" type="date" id="deadLine" name="deadLine" th:field="*{deadline}" placeholder="Enter item deadline"/>
+        <br>
+        <div class="input-group mb-2">
+            <span class="input-group-text">Status:</span>
+        </div>
+        <input class="form-control" type="checkbox" id="status" name="status" th:field="*{doneStatus}" placeholder="Enter item status"/>
+        <br>
+        <div class="input-group mb-2">
+            <span class="input-group-text">Reward:</span>
+        </div>
+        <input class="form-control" type="number" id="reward" name="reward" th:field="*{reward}" placeholder="Enter reward"/>
+        <br>
+        <button type="submit" class="btn-dark text-white" >Create</button>
+    </form>
+
+
+
+
+
+</body>
+</html>

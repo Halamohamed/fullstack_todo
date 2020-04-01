@@ -13,8 +13,37 @@
 </head>
 <body>
 <div class="container">
-    <h2>Welcome</h2>
+    <h2>Item search</h2>
 </div>
+
+<div class="container">
+
+<!--    <form method="get" th:action="@{/items}" th:object="${item}">-->
+<!--        <label for="itemtitle">Item</label>-->
+<!--        <input class="form-control" id="itemTitle" th:fields="*{itemTitle}" type="text" placeholder="Write item ..." />-->
+<!--        <button class="btn btn-outline-primary" type="submit">Save item</button>-->
+<!--    </form>-->
+
+</div>
+
+<div th:each="item : ${item}">
+    <p>Item title:</p>
+    <p th:text="${item}"></p>
+    <p>Description:</p>
+<!--    <p th:text="${item.getItemDescription()}"></p>-->
+    <p>Deadline:</p>
+</div>
+
+
+
+
+<!--<p>First name</p>-->
+<!--<p th:text="${appUser.firstName}"></p>-->
+<!--<p>Last name</p>-->
+<!--<p th:text="${appUser.lastName}"></p>-->
+<!--<p>Registration date</p>-->
+<!--<p th:text="${appUser.regDate}"></p>-->
+
 
 
 </body>

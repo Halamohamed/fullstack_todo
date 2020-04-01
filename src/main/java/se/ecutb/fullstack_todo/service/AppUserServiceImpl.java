@@ -46,13 +46,10 @@ public class AppUserServiceImpl implements AppUserService {
         AppUserRole role = roleRepository.findByRole(Roles.USER.name());
 
         Set<AppUserRole> roleSet = new HashSet<>();
-
         roleSet.add(role);
 
         newUser = appUserRepository.save(newUser);
-
         newUser.setRoleSet(roleSet);
-
 
         return newUser;
     }
