@@ -77,6 +77,14 @@ public class TodoItem {
         this.reward = reward;
     }
 
+    public AppUser getUserName() {
+        return userName;
+    }
+
+    public void setUserName(AppUser userName) {
+        this.userName = userName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

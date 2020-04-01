@@ -15,4 +15,6 @@ public interface TodoItemRepository extends CrudRepository<TodoItem,Integer> {
     List<TodoItem> findByDeadline(LocalDate deadline);
 
     List<TodoItem> findByDoneStatus(boolean status);
+
+    List<TodoItem> findAll();
 }

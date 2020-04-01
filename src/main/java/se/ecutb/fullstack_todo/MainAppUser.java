@@ -11,11 +11,14 @@ import se.ecutb.fullstack_todo.dto.AppUserForm;
 import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.entity.AppUserRole;
 import se.ecutb.fullstack_todo.entity.Roles;
+import se.ecutb.fullstack_todo.entity.TodoItem;
 import se.ecutb.fullstack_todo.service.AppUserDetailsService;
 import se.ecutb.fullstack_todo.service.AppUserService;
+import se.ecutb.fullstack_todo.service.TodoItemService;
 
 import javax.annotation.PostConstruct;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -25,15 +28,16 @@ public class MainAppUser {
     private AppUserRepository userRepository;
     private AppUserRoleRepository appUserRole;
     private BCryptPasswordEncoder passwordEncoder;
-    private TodoItemRepository todoItemRepository;
+    private TodoItemService todoItemService;
     private AppUserService service;
 
     @Autowired
-    public MainAppUser(AppUserRoleRepository roleRepository, AppUserRepository repository, BCryptPasswordEncoder passwordEncoder, AppUserService service) {
+    public MainAppUser(AppUserRoleRepository roleRepository, AppUserRepository repository, BCryptPasswordEncoder passwordEncoder, AppUserService service,TodoItemService todoItemService) {
         this.userRepository = repository;
         this.appUserRole = roleRepository;
         this.passwordEncoder = passwordEncoder;
         this.service = service;
+        this.todoItemService = todoItemService;
     }
 
     @PostConstruct
@@ -47,7 +51,13 @@ public class MainAppUser {
 
 
         userRepository.save(user);
+        TodoItem todoItem = new TodoItem("test title", "test description", LocalDate.now().plusDays(10),false,12);
+
+
+
+
         System.out.println(service.findByUsername("admin"));
+        System.out.println(todoItemService.create(todoItem,user.getUsername()));
 
     }
 
