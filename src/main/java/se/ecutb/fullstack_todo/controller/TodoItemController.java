@@ -50,7 +50,7 @@ public class TodoItemController {
             TodoItem newTodo = new TodoItem(todoItemForm.getItemTitle(), todoItemForm.getItemDescription(), todoItemForm.getDeadline(), todoItemForm.isDoneStatus(), todoItemForm.getReward());
             TodoItem todoItem = todoItemService.create(newTodo,principal.getUsername());
             model.addAttribute("item", todoItem);
-            return "redirect:/items";
+            return "redirect:/items?type=id&value="+todoItem.getItemId();
         }
         return "create-item";
     }
@@ -60,4 +60,13 @@ public class TodoItemController {
         model.addAttribute("item", new TodoItemForm());
         return "create-item";
     }
+
+    @GetMapping("/items/details")
+    public String getItems(Model model){
+        List<TodoItem> itemList = todoItemService.findAll();
+        model.addAttribute("itemlist", itemList);
+        return "item-details";
+    }
+
+
 }
