@@ -6,6 +6,9 @@ import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 
 public class TodoItemForm {
+
+
+    private int itemId;
     @NotBlank(message = "Title is required")
     private String itemTitle;
     @NotBlank(message = "Description must not be null")
@@ -15,6 +18,14 @@ public class TodoItemForm {
     private boolean doneStatus;
     @DecimalMin(value = "1", message = "minimum value is 1")
     private double reward;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public String getItemTitle() {
         return itemTitle;

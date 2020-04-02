@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <meta charset="UTF-8">
+    <title>Update Todo Item</title>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="@{/items/{id}/update} " th:object="${form}" method="post">
+        <input type="number" th:value="${form.itemId}" th:field="*{itemId}"/>
+        <label for="itemTitle">Title: </label>
+        <input class="form-control" type="text" id="itemTitle" th:field="*{itemTitle}"/>
+
+        <label for="description">Description: </label>
+        <input class="form-control" type="text" id="description" th:field="*{itemDescription}"/>
+
+        <label for="status">Status: </label>
+        <input class="form-control" type="text" id="status" th:field="*{doneStatus}"/>
+
+        <label for="reward">Reward: </label>
+        <input class="form-control" type="number" id="reward" th:field="*{reward}"/>
+
+        <button class="btn btn-primary" type="submit"> update</button>
+    </form>
+
+
+</div>
+</body>
+</html>

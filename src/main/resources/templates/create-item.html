@@ -13,31 +13,31 @@
 </head>
 <body>
 
-    <form th:action="@{/items/details}"  method="Get">
+    <form th:action="@{/items/create}" th:object="${item}" method="post">
         <div class="input-group mb-2">
             <span class="input-group-text">Item title:</span>
         </div>
-        <input class="form-control" type="text" id="title" name="title"  placeholder="Enter Item title"/>
+        <input class="form-control" type="text" id="title"  th:field="*{itemTitle}" placeholder="Enter Item title"/>
         <br>
         <div class="input-group mb-2">
             <span class="input-group-text">Description:</span>
         </div>
-        <input class="form-control" type="text" id="description" name="description"  placeholder="Enter item description"/>
+        <input class="form-control" type="text" id="description" th:field="*{itemDescription}"  placeholder="Enter item description"/>
         <br>
         <div class="input-group mb-2">
             <span class="input-group-text">Deadline:</span>
         </div>
-        <input class="form-control" type="date" id="deadLine" name="deadLine"  placeholder="Enter item deadline"/>
+        <input class="form-control" type="date" id="deadLine" th:field="*{deadline}"  placeholder="Enter item deadline"/>
         <br>
         <div class="input-group mb-2">
             <span class="input-group-text">Status:</span>
         </div>
-        <input class="form-control" type="checkbox" id="status" name="status" placeholder="Enter item status"/>
+        <input class="form-control" type="checkbox" id="status" th:field="*{doneStatus}" placeholder="Enter item status"/>
         <br>
         <div class="input-group mb-2">
             <span class="input-group-text">Reward:</span>
         </div>
-        <input class="form-control" type="number" id="reward" name="reward"  placeholder="Enter reward"/>
+        <input class="form-control" type="number" id="reward" th:field="*{reward}" placeholder="Enter reward"/>
         <br>
         <button type="submit" class="btn-dark text-white" >Create</button>
     </form>

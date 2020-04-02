@@ -8,6 +8,8 @@ import java.util.List;
 public interface TodoItemService {
     List<TodoItem> findAll();
 
+    TodoItem findByItemId(int itemId);
+
     @Transactional(rollbackFor = RuntimeException.class)
     TodoItem create(TodoItem item, String username);
 
@@ -16,4 +18,6 @@ public interface TodoItemService {
     boolean delete(int itemId);
 
     TodoItem findByTitle(String title);
+
+    TodoItem updateItem(TodoItem todoItem);
 }

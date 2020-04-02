@@ -29,6 +29,11 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
+    public TodoItem findByItemId(int itemId){
+      return todoItemRepository.findByItemId(itemId);
+    }
+
+    @Override
     @Transactional(rollbackFor = RuntimeException.class)
     public TodoItem create(TodoItem item, String username){
         AppUser user = appUserRepository.findByUsername(username).get();
@@ -58,5 +63,20 @@ public class TodoItemServiceImpl implements TodoItemService {
      }
         Optional<TodoItem> todoItem = todoItemRepository.findByItemTitle(title);
       return todoItem.get();
+    }
+
+    @Override
+    public TodoItem updateItem(TodoItem todoItem){
+      if(todoItem.getItemId() == 0){
+          throw new IllegalArgumentException("Todo item not found");
+      }
+      TodoItem newItem = findByItemId(todoItem.getItemId());
+      newItem.setUserName(todoItem.getUserName());
+      newItem.setItemDescription(todoItem.getItemDescription());
+      newItem.setDeadline(todoItem.getDeadline());
+      newItem.setDoneStatus(todoItem.isDoneStatus());
+      newItem.setReward(todoItem.getReward());
+
+      return todoItemRepository.save(newItem);
     }
 }

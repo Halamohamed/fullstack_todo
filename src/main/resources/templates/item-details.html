@@ -12,12 +12,13 @@
 </head>
 <body>
 
-    <div th:each="name: ${itemlist}">
+    <div th:each="name: ${itemList}">
 
         <div class="container">
             <div class="row">
-                <h2 th:text="${name.itemTitle}"> Items</h2>
+                <h2 th:text="${name.valueOf(itemId)}"> Items</h2>
             </div>
+
             <div class="row">
                 <div class="col-1">
                     <span>Title:</span>
@@ -39,25 +40,26 @@
                     <span th:text="${name.deadline}">Deadline</span>
                 </div>
             </div>
-            <a class="btn btn-link" th:href="@{/items/create}">Create</a>
+            <div class="col-1">
+                <span>Status:</span>
+            </div>
+            <div class="col-5">
+                <span th:text="${name.doneStatus}">Status</span>
+            </div>
+            <div class="col-1">
+                <span>Reward:</span>
+            </div>
+            <div class="col-5">
+                <span th:text="${name.reward}">Reward</span>
+            </div>
+        </div>
+        </div>
+            <a class="btn btn-link" th:href="@{/items/{id}/update}">Update</a>
         </div>
 
-
-
-<!--        <div th:each="name : ${itemlist}" >-->
-<!--            <p>Item title:</p>-->
-<!--            <p th:text="${name.getItemTitle()}"></p>-->
-<!--            <p>Description:</p>-->
-<!--            <p th:text="${name.getItemDescription()}"></p>-->
-<!--            <p>Deadline:</p>-->
-<!--            <p th:text="${name.getDeadline()}"></p>-->
-<!--            <p>Status:</p>-->
-<!--            <p th:text="${name.isDoneStatus()}"></p>-->
-<!--            <p>Reward:</p>-->
-<!--            <p th:text="${name.getReward()}"></p>-->
-<!--        </div>-->
-
     </div>
+
+    <a class="btn btn-link" th:href="@{/items/create}">Create</a>
 
 
 

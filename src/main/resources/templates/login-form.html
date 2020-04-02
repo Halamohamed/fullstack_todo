@@ -48,7 +48,7 @@
                 <div class="mb-2" th:if="${param.logout}">
                     <span class="card-text text-danger text-sm-left">You have been logged out</span>
                 </div>
-                <form th:action="@{/items/create}" method="get">
+                <form th:action="@{/login}" method="post">
                     <div class="input-group mb-2">
                        <span class="input-group-text">Username:</span>
                     </div>

@@ -42,15 +42,16 @@ public class TodoItemController {
 
     }
     @PostMapping("/items/create")
-    public String createItem(@Valid @ModelAttribute("item") TodoItemForm todoItemForm, @AuthenticationPrincipal UserDetails principal, Model model, BindingResult bindingResult){
+    public String createItem(@Valid @ModelAttribute("item") TodoItemForm todoItemForm, BindingResult bindingResult, @AuthenticationPrincipal UserDetails principal){
+
         if(bindingResult.hasErrors()){
             return "create-item";
         }
-        if(principal.getAuthorities().equals("ADMIN")) {
+        if(principal.getAuthorities().stream().anyMatch(auth -> auth.getAuthority().equals("ADMIN"))) {
             TodoItem newTodo = new TodoItem(todoItemForm.getItemTitle(), todoItemForm.getItemDescription(), todoItemForm.getDeadline(), todoItemForm.isDoneStatus(), todoItemForm.getReward());
             TodoItem todoItem = todoItemService.create(newTodo,principal.getUsername());
-            model.addAttribute("item", todoItem);
-            return "redirect:/items?type=id&value="+todoItem.getItemId();
+
+            return "redirect:/items/details?type=id&value=" + todoItem.getItemId();
         }
         return "create-item";
     }
@@ -62,10 +63,19 @@ public class TodoItemController {
     }
 
     @GetMapping("/items/details")
-    public String getItems(Model model){
+    public String getItems(@ModelAttribute("itemList") Model model){
         List<TodoItem> itemList = todoItemService.findAll();
-        model.addAttribute("itemlist", itemList);
+        model.addAttribute("itemList", itemList);
         return "item-details";
+    }
+
+    @GetMapping("/items/{id}/update")
+    public String update(@PathVariable("id") int id,@ModelAttribute("form") TodoItemForm item){
+
+        TodoItem todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());
+
+        TodoItem todoItem = todoItemService.updateItem(todo1);
+        return "update-form";
     }
 
 
