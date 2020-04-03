@@ -9,23 +9,26 @@
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
 
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>User details</title>
 </head>
 <body>
-    <div class="container">
-    <div>
-        <h2 class="bg-dark text-danger card-header font-weight-light" style="text-align:center">Welcome to Fullstack Todo</h2>
+
+        <h2>User details</h2>
+
+        <div th:each="name: ${list}">
+            <p>First name</p>
+            <p th:text="${name.firstName}"></p>
+            <p>Last name</p>
+            <p th:text="${name.lastName}"></p>
+            <p>Registration date</p>
+            <p th:text="${name.regDate}"></p>
+
+        </div>
+
+        <a class="btn btn-link" th:href="@{/items/create}">Create</a>
 
 
-    </div>
-
-
-
-
-
-    </div>
 
 
 </body>
 </html>
-

@@ -14,6 +14,7 @@ import se.ecutb.fullstack_todo.entity.TodoItem;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -62,5 +63,10 @@ public class AppUserServiceImpl implements AppUserService {
     @Override
     public Optional<TodoItem> findByItemTitle(String title) {
         return todoItemRepository.findByItemTitle(title);
+    }
+
+    @Override
+    public List<AppUser> findAll(){
+        return appUserRepository.findAll();
     }
 }

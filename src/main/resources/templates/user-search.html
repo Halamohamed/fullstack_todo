@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <meta charset="UTF-8">
+    <title>User search</title>
+</head>
+<body>
+
+    <h2>User search</h2>
+
+    <form action="#" th:action="@{/users/{username}/search}" th:object="${appUser}" method="post">
+        <table border="1">
+            <tr>
+                <td><label th:text="${username}" /></td>
+                <td><input type="text" th:field="*{username}" /></td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Search" /></td>
+            </tr>
+        </table>
+    </form>
+
+        <div th:if="${!appUser.username.equals(null)}">
+            <p th: th:text="${appUser.getFirstName()}"></p>
+            <p th: th:text="${appUser.getLastName()}"></p>
+            <p th: th:text="${appUser.getRegDate()}"></p>
+            <p th: th:text="${appUser.getTodoItems()}"></p>
+        </div>
+        <div th:unless="${!appUser.username.equals(null)}">
+            <p>Username not found</p>
+        </div>
+
+
+
+</body>
+</html>

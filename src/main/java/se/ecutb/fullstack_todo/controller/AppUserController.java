@@ -20,6 +20,7 @@ import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.service.AppUserService;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -68,15 +69,9 @@ public class AppUserController {
         }
 
         if(username.equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))){
-            Optional<AppUser> optionalAppUser = service.findByUsername(username);
-            if(optionalAppUser.isPresent()){
-                AppUser appUser = service.findByUsername(username).get();
-                model.addAttribute("appUser",appUser);
-                return "user-view";
-            }
-            else {
-                throw new IllegalArgumentException("Requested user not found");
-            }
+            List<AppUser> appUserList = service.findAll();
+            model.addAttribute("list", appUserList);
+            return "user-details";
         }
         return "redirect:/login";
     }
@@ -85,4 +80,30 @@ public class AppUserController {
     public String getLogin(){
         return "login-form";
     }
+
+    @PostMapping("/users/{username}/search")
+    public String searchUser(@PathVariable("username") String username, @AuthenticationPrincipal UserDetails user, Model model){
+        if(user == null){
+            return "redirect:/login";
+        }
+        if(username.equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))
+        ){
+            Optional<AppUser> optionalAppUser = service.findByUsername(username);
+            if(optionalAppUser.isPresent()){
+                AppUser appUser = service.findByUsername(username).get();
+                model.addAttribute("appUser", appUser);
+                return "user-search";
+            }
+            else{
+                throw new IllegalArgumentException("Requested user not found");
+            }
+
+        }
+            return "user-search";
+
+    }
+
+
+
 }
+

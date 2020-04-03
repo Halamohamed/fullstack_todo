@@ -48,6 +48,14 @@ public class AppUser {
         this.password = password;
     }
 
+    public List<TodoItem> getTodoItems() {
+        return todoItems;
+    }
+
+    public void setTodoItems(List<TodoItem> todoItems) {
+        this.todoItems = todoItems;
+    }
+
     public AppUser() {
     }
 

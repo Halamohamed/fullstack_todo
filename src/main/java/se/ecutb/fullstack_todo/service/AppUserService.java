@@ -4,6 +4,7 @@ import se.ecutb.fullstack_todo.dto.AppUserForm;
 import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.entity.TodoItem;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface AppUserService {
@@ -12,4 +13,5 @@ public interface AppUserService {
     Optional<AppUser> findByUsername(String username);
     Optional<TodoItem> findByItemTitle(String title);
 
+    List<AppUser> findAll();
 }
