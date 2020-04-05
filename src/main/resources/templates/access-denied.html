@@ -7,28 +7,19 @@
     <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
     <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
     <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
-
     <meta charset="UTF-8">
-    <title>User details</title>
+    <title>Access denied</title>
 </head>
 <body>
+<div class="container">
 
-        <h2>User details</h2>
-
-        <div th:each="name: ${list}">
-            <p>First name</p>
-            <p th:text="${name.firstName}"></p>
-            <p>Last name</p>
-            <p th:text="${name.lastName}"></p>
-            <p>Registration date</p>
-            <p th:text="${name.regDate}"></p>
-
+    <div class="card mt-4 mb-3 border-dark">
+        <h4 class="bg-dark text-danger card-header font-weight-light">Access Denied</h4>
+        <div class="card-body">
+            <h5>You are not authorized to view requested page</h5>
         </div>
-
-        <a class="btn btn-link" th:href="@{/users/items/create}">Create</a>
-
-
-
+    </div>
+</div>
 
 </body>
 </html>

@@ -30,7 +30,7 @@ public class TodoItemController {
         this.todoItemService = todoItemService;
     }
 
-    @GetMapping("/items")
+    @GetMapping("/users/items")
     public String getItems(String title, Model model){
         TodoItem todoItem = todoItemService.findByTitle(title);
         if (todoItem != null){
@@ -41,7 +41,7 @@ public class TodoItemController {
         throw new IllegalArgumentException("Todo item is not found");
 
     }
-    @PostMapping("/items/create")
+    @PostMapping("/users/items/create")
     public String createItem(@Valid @ModelAttribute("item") TodoItemForm todoItemForm, BindingResult bindingResult, @AuthenticationPrincipal UserDetails principal){
 
         if(bindingResult.hasErrors()){
@@ -51,25 +51,25 @@ public class TodoItemController {
             TodoItem newTodo = new TodoItem(todoItemForm.getItemTitle(), todoItemForm.getItemDescription(), todoItemForm.getDeadline(), todoItemForm.isDoneStatus(), todoItemForm.getReward());
             TodoItem todoItem = todoItemService.create(newTodo,principal.getUsername());
 
-            return "redirect:/items/details?type=id&value=" + todoItem.getItemId();
+            return "redirect:/users/items/details?type=id&value=" + todoItem.getItemId();
         }
         return "create-item";
     }
 
-    @GetMapping("/items/create")
+    @GetMapping("/users/items/create")
     public String getForm(Model model) {
         model.addAttribute("item", new TodoItemForm());
         return "create-item";
     }
 
-    @GetMapping("/items/details")
+    @GetMapping("/users/items/details")
     public String getItems(@ModelAttribute("itemList") Model model){
         List<TodoItem> itemList = todoItemService.findAll();
         model.addAttribute("itemList", itemList);
         return "item-details";
     }
 
-    @GetMapping("/items/{id}/update")
+    @GetMapping("/users/items/{id}/update")
     public String update(@PathVariable("id") int id,@ModelAttribute("form") TodoItemForm item){
 
         TodoItem todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());

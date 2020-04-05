@@ -103,6 +103,11 @@ public class AppUserController {
 
     }
 
+    @GetMapping("/accessdenied")
+    public String getAccessDenied(){
+        return "access-denied";
+    }
+
 
 
 }

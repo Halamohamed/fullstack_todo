@@ -11,6 +11,8 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/users/**").hasAnyAuthority("ADMIN","USER")
             .antMatchers(("/**")).permitAll()
             .and().formLogin()
             .loginPage(("/login"))
@@ -23,7 +25,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
             .logoutUrl("/logout")
             .invalidateHttpSession(true)
             .deleteCookies("JSESSIONID")
-            .logoutSuccessUrl("/login/logout");
+            .logoutSuccessUrl("/login/logout")
+                .and()
+                .exceptionHandling()
+                .accessDeniedPage("/accessdenied");
 
     }
 
