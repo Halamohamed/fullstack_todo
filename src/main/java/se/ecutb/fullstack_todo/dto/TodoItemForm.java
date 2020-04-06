@@ -19,6 +19,18 @@ public class TodoItemForm {
     @DecimalMin(value = "1", message = "minimum value is 1")
     private double reward;
 
+    public TodoItemForm(int itemId,  String itemTitle,  String itemDescription,LocalDate deadline, boolean doneStatus, double reward) {
+        this.itemId = itemId;
+        this.itemTitle = itemTitle;
+        this.itemDescription = itemDescription;
+        this.deadline = deadline;
+        this.doneStatus = doneStatus;
+        this.reward = reward;
+    }
+
+    public TodoItemForm() {
+    }
+
     public int getItemId() {
         return itemId;
     }

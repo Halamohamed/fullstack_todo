@@ -84,13 +84,22 @@ public class TodoItemController {
         return "item-details";
     }
 
+    @GetMapping("/users/items/{id}/update")
+    public String getUpdate(@PathVariable("id") int id,Model model){
+        TodoItem todo1 = todoItemService.findByItemId(id);
+        TodoItemForm todoItemForm= new TodoItemForm(todo1.getItemId(),todo1.getItemTitle(),todo1.getItemDescription(),todo1.getDeadline(),todo1.isDoneStatus(),todo1.getReward());
+       model.addAttribute("form",todoItemForm);
+       return "update-form";
+
+    }
     @PostMapping("/users/items/{id}/update")
     public String update(@PathVariable("id") int id,@ModelAttribute("form") TodoItemForm item){
 
-        TodoItem todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());
+        TodoItem todo1 = todoItemService.findByItemId(id);
+        todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());
 
-        TodoItem todoItem = todoItemService.updateItem(todo1);
-        return "update-form";
+        TodoItem todoItem = todoItemService.save(todo1);
+        return "redirect:/users/items";
     }
 
 

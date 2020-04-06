@@ -62,13 +62,13 @@ public class AppUserController {
         service.registerAppUser(userForm);
         return "redirect:/login";
     }
-    @GetMapping("/users/{username}")
-    public String getUser(@PathVariable("username") String username, @AuthenticationPrincipal UserDetails user,Model model ){
+    @GetMapping("/users/details")
+    public String getUser(@ModelAttribute("list") AppUser appUser, @AuthenticationPrincipal UserDetails user,Model model ){
         if(user == null){
             return "redirect:/login";
         }
 
-        if(username.equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))){
+        if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))){
             List<AppUser> appUserList = service.findAll();
             model.addAttribute("list", appUserList);
             return "user-details";

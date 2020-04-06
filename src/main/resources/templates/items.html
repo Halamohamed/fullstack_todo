@@ -39,6 +39,7 @@
     <p th:text="${items.isDoneStatus()}"></p>
     <p>Reward:</p>
     <p th:text="${items.getReward()}"></p>
+    <a class="btn btn-link" th:href="@{items/{id}/update(id=${items.getItemId()})}">Update</a>
 </div>
 
 

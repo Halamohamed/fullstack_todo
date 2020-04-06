@@ -12,50 +12,23 @@
 </head>
 <body>
 
-    <div th:each="name: ${itemList}">
+    <div class="container" >
 
-        <div class="container">
-            <div class="row">
-                <h2 th:text="${name.getItemId()}"> Items</h2>
-            </div>
+        <form >
+            <label for="itemId">Item id:</label>
+            <input th:hidden="itemList.getItemId()" value="${itemList.itemId}" id="itemId" name="itemId" />
+            <label for="itemTitle">Item Title:</label>
+            <input th:text="itemList.getItemTitle()" id="itemTitle" name="itemTitle" />
+            <label for="description">Item Description:</label>
+            <input th:text="itemList.getItemDescription()" id="description" name="description" />
+            <label for="deadline">Deadline:</label>
+            <input th:text="itemList.getDeadline()" id="deadline" name="deadline" />
+            <label for="status">Item Status:</label>
+            <input th:text="itemList.isDoneStatus()" id="status" name="status" />
+            <label for="reward">Reward:</label>
+            <input th:text="itemList.getReward()" id="reward" name="reward" />
+        </form>
 
-            <div class="row">
-                <div class="col-1">
-                    <span>Title:</span>
-                </div>
-                <div class="col-11">
-                    <span th:text="${name.getItemTitle()}">Title:</span>
-                </div>    </div>
-            <div class="row">
-                <div class="col-1">
-                    <span>Description:</span>
-                </div>
-                <div class="col-5">
-                    <span th:text="${name.getItemDescription()}"> Description</span>
-                </div>
-                <div class="col-1">
-                    <span>Deadline:</span>
-                </div>
-                <div class="col-5">
-                    <span th:text="${name.getDeadline()}">Deadline</span>
-                </div>
-            </div>
-            <div class="col-1">
-                <span>Status:</span>
-            </div>
-            <div class="col-5">
-                <span th:text="${name.isDoneStatus()}">Status</span>
-            </div>
-            <div class="col-1">
-                <span>Reward:</span>
-            </div>
-            <div class="col-5">
-                <span th:text="${name.getReward()}">Reward</span>
-            </div>
-        </div>
-        </div>
-            <a class="btn btn-link" th:href="@{users/items/{id}/update}">Update</a>
-        </div>
 
     </div>
 
