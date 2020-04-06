@@ -16,11 +16,9 @@ public class AppUser {
     private String lastName;
     private LocalDate regDate;
     private String password;
-
-
+    
     @OneToMany(mappedBy = "userName")
     private List<TodoItem> todoItems = new ArrayList<>();
-
 
     @ManyToMany(
             cascade = CascadeType.MERGE,
@@ -32,7 +30,6 @@ public class AppUser {
                     inverseJoinColumns = @JoinColumn(name = "user_role")
     )
     Set<AppUserRole> roleSet;
-
 
 
     public AppUser(String username, String firstName, String lastName, LocalDate regDate, String password) {

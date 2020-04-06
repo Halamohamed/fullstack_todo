@@ -16,7 +16,7 @@
 
         <div class="container">
             <div class="row">
-                <h2 th:text="${name.valueOf(itemId)}"> Items</h2>
+                <h2 th:text="${name.getItemId()}"> Items</h2>
             </div>
 
             <div class="row">
@@ -24,42 +24,42 @@
                     <span>Title:</span>
                 </div>
                 <div class="col-11">
-                    <span th:text="${name.itemTitle}">Title:</span>
+                    <span th:text="${name.getItemTitle()}">Title:</span>
                 </div>    </div>
             <div class="row">
                 <div class="col-1">
                     <span>Description:</span>
                 </div>
                 <div class="col-5">
-                    <span th:text="${name.itemDescription}"> Description</span>
+                    <span th:text="${name.getItemDescription()}"> Description</span>
                 </div>
                 <div class="col-1">
                     <span>Deadline:</span>
                 </div>
                 <div class="col-5">
-                    <span th:text="${name.deadline}">Deadline</span>
+                    <span th:text="${name.getDeadline()}">Deadline</span>
                 </div>
             </div>
             <div class="col-1">
                 <span>Status:</span>
             </div>
             <div class="col-5">
-                <span th:text="${name.doneStatus}">Status</span>
+                <span th:text="${name.isDoneStatus()}">Status</span>
             </div>
             <div class="col-1">
                 <span>Reward:</span>
             </div>
             <div class="col-5">
-                <span th:text="${name.reward}">Reward</span>
+                <span th:text="${name.getReward()}">Reward</span>
             </div>
         </div>
         </div>
-            <a class="btn btn-link" th:href="@{/items/{id}/update}">Update</a>
+            <a class="btn btn-link" th:href="@{users/items/{id}/update}">Update</a>
         </div>
 
     </div>
 
-    <a class="btn btn-link" th:href="@{/items/create}">Create</a>
+    <a class="btn btn-link" th:href="@{users/items/create}">Create</a>
 
 
 
