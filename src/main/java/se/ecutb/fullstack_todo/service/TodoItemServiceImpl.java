@@ -10,6 +10,7 @@ import se.ecutb.fullstack_todo.entity.TodoItem;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TodoItemServiceImpl implements TodoItemService {
@@ -26,6 +27,14 @@ public class TodoItemServiceImpl implements TodoItemService {
     @Override
     public List<TodoItem> findAll(){
       return todoItemRepository.findAll();
+    }
+
+    @Override
+    public List<TodoItem> findAllUnAssigned(){
+        return todoItemRepository.findAll()
+                .stream()
+                .filter(todoItem -> todoItem.getUserName().equals(null))
+                .collect(Collectors.toList());
     }
 
     @Override

@@ -8,6 +8,8 @@ import java.util.List;
 public interface TodoItemService {
     List<TodoItem> findAll();
 
+    List<TodoItem> findAllUnAssigned();
+
     TodoItem findByItemId(int itemId);
 
     @Transactional(rollbackFor = RuntimeException.class)

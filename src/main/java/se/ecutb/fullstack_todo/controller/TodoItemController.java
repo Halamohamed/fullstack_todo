@@ -79,7 +79,11 @@ public class TodoItemController {
 
     @GetMapping("/users/items/details")
     public String getItems(@ModelAttribute("itemList") Model model){
-        List<TodoItem> itemList = todoItemService.findAll();
+
+        List<TodoItem> itemList = todoItemService.findAllUnAssigned();
+        if (itemList.get(0).getItemId() != 0){
+            throw new IllegalArgumentException("Not found");
+        }
         model.addAttribute("itemList", itemList);
         return "item-details";
     }

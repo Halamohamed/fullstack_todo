@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/style.css}" href="../static/style.css">
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.css}">
+
+    <script defer th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script defer th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script defer th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+  <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+<div class="container">
+    <div th:if="${appUser.getUsername().equals(null)}">
+        <p>Username not found</p>
+    </div>
+    <div th:unless="${appUser.getUsername().equals(null)}">
+        <p  th:text="${appUser.getFirstName()}"></p>
+        <p  th:text="${appUser.getLastName()}"></p>
+        <p  th:text="${appUser.getRegDate()}"></p>
+        <div  th:each="todoItem : ${appUser.getTodoItems()}">
+            <p th:text="${todoItem.getItemId()}"></p>
+            <p  th:text="${todoItem.getItemTitle()}"> </p>
+            <p  th:text="${todoItem.getItemDescription()}"> </p>
+            <p  th:text="${todoItem.getDeadline()}"> </p>
+            <p  th:text="${todoItem.isDoneStatus()}"> </p>
+            <p  th:text="${todoItem.getReward()}"> </p>
+
+        </div>
+    </div>
+    <a th:href="@{/items/details}"> Unassigned Items list</a>
+</div>
+</body>
+</html>

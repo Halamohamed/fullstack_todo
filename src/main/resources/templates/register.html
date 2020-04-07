@@ -27,28 +27,64 @@
                     <span class="input-group-text">Username:</span>
                 </div>
                 <input class="form-control" type="text" id="username"  th:field="*{username}" placeholder="Enter your username"/>
+                <div th:if="${#fields.hasErrors('username')}">
+                    <ul class="p-0" >
+                        <li  th:each="err : ${#fields.errors('username')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">First name:</span>
                 </div>
-                <input class="form-control" type="text" id="firstname"  th:field="*{firstName}" placeholder="Enter your first name"/>
+                <input class="form-control" type="text" id="firstName"  th:field="*{firstName}" placeholder="Enter your first name"/>
+                <div th:if="${#fields.hasErrors('firstName')}">
+                    <ul class="p-0" >
+                        <li  th:each="err : ${#fields.errors('firstName')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Last name:</span>
                 </div>
-                <input class="form-control" type="text" id="lastname"  th:field="*{lastName}" placeholder="Enter your last name"/>
+                <input class="form-control" type="text" id="lastName"  th:field="*{lastName}" placeholder="Enter your last name"/>
+                <div th:if="${#fields.hasErrors('lastName')}">
+                    <ul class="p-0" >
+                        <li  th:each="err : ${#fields.errors('lastName')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Password:</span>
                 </div>
                 <input class="form-control" type="password" id="password"  th:field="*{password}" placeholder="Enter your password"/>
+                <div th:if="${#fields.hasErrors('password')}">
+                    <ul class="p-0" >
+                        <li  th:each="err : ${#fields.errors('password')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <div class="input-group mb-2">
                     <span class="input-group-text">Confirm password:</span>
                 </div>
-                <input class="form-control" type="password" id="passwordconfirm" name="passwordconfirm" th:field="*{passwordConfirm}" placeholder="Confirm your password"/>
+                <input class="form-control" type="password" id="passwordConfirm"  th:field="*{passwordConfirm}" placeholder="Confirm your password"/>
+                <div th:if="${#fields.hasErrors('passwordConfirm')}">
+                    <ul class="p-0" >
+                        <li  th:each="err : ${#fields.errors('passwordConfirm')}">
+                            <span class="form-error" th:text="${err}"></span>
+                        </li>
+                    </ul>
+                </div>
                 <br>
                 <button type="submit" class="btn-dark text-white" >Register</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
             </form>
 
 

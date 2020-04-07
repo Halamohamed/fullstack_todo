@@ -81,26 +81,31 @@ public class AppUserController {
         return "login-form";
     }
 
-    @PostMapping("/users/{username}/search")
-    public String searchUser(@PathVariable("username") String username, @AuthenticationPrincipal UserDetails user, Model model){
+    @PostMapping("/users/search")
+    public String searchUser(@ModelAttribute("appUser") AppUser appUser, @AuthenticationPrincipal UserDetails user, Model model){
         if(user == null){
             return "redirect:/login";
         }
-        if(username.equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))
+        if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))
         ){
-            Optional<AppUser> optionalAppUser = service.findByUsername(username);
+            Optional<AppUser> optionalAppUser = service.findByUsername(appUser.getUsername());
             if(optionalAppUser.isPresent()){
-                AppUser appUser = service.findByUsername(username).get();
-                model.addAttribute("appUser", appUser);
-                return "user-search";
+                AppUser appUser1 = service.findByUsername(appUser.getUsername()).get();
+                model.addAttribute("appUser", appUser1);
+                return "oneUser";
             }
             else{
                 throw new IllegalArgumentException("Requested user not found");
             }
 
         }
-            return "user-search";
+            return "error-page";
 
+    }
+    @GetMapping("users/search")
+    public String getSearch(@ModelAttribute("appUser") AppUser appUser,Model model){
+       // model.addAttribute("username", service.findByUsername(username));
+        return "user-search";
     }
 
     @GetMapping("/accessdenied")

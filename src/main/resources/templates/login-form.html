@@ -14,32 +14,7 @@
 <body>
     <div class="container">
         <div>
-            <nav th:fragment="navigation" class="navbar navbar-dark bg-dark">
-
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="navbar-brand text-danger" href="@{/register}" >REGISTER</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Link 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Link 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-danger" href="#">Link 3</a>
-                    </li>
-                </ul>
-
-                <form action="@{/logout}" class="form-inline" method="post">
-                    <div sec:authorize="isAuthenticated()">
-                        <button class="btn btn-outline-danger" type="submit" value="Logout">Logout</button>
-                    </div>
-                    <div sec:authorize="isAnonymous()">
-                        <a class="btn btn-outline-danger" href="@{/login}" value="Login">Login</a>
-                    </div>
-                </form>
-            </nav>
+            <nav th:replace="navbar :: navigation"></nav>
             <h2 class="bg-dark text-danger card-header font-weight-light">Login</h2>
             <div class="card-body">
                 <div class="mb-2" th:if="${param.error}">
@@ -53,11 +28,13 @@
                        <span class="input-group-text">Username:</span>
                     </div>
                     <input class="form-control" type="text" id="username" name="username" placeholder="Enter your username"/>
+
                     <br>
                     <div class="input-group mb-2">
                         <span class="input-group-text">Password:</span>
                     </div>
                     <input class="form-control" type="password" id="password" name="password" placeholder="Enter your password"/>
+
                     <br>
                     <button type="submit" class="btn-dark text-white" >Login</button>
 

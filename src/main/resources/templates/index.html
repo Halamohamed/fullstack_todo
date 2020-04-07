@@ -14,7 +14,17 @@
 <body>
     <div class="container">
             <div>
+                <nav th:replace="navbar :: navigation"></nav>
+
+                <div class="card-body">
+                    <div class="mb-2" th:if="${param.error}">
+                        <span class="card-text text-danger text-sm-left">Invalid username or password</span>
+                    </div>
+                    <div class="mb-2" th:if="${param.logout}">
+                        <span class="card-text text-danger text-sm-left">You have been logged out</span>
+                    </div>
                 <h2 class="bg-dark text-danger card-header font-weight-light" style="text-align:center">Welcome to Fullstack Todo</h2>
+                </div>
             </div>
     </div>
 
