@@ -11,7 +11,9 @@
 
     <ul class="nav">
         <li class="nav-item">
-            <a class="navbar-brand text-danger" href="@{/register}">Register</a>
+            <div sec:authorize="hasAuthority('ADMIN')">
+                <a class="navbar-brand text-danger" th:href="@{/register}">Register</a>
+            </div>
         </li>
         <li class="nav-item">
             <a class="nav-link text-danger" href="#">Link 1</a>
@@ -24,12 +26,12 @@
         </li>
     </ul>
 
-    <form action="@{/logout}" class="form-inline" method="post">
+    <form th:action="@{/logout}" class="form-inline" method="post">
         <div sec:authorize="isAuthenticated()">
             <button class="btn btn-outline-danger" type="submit" value="Logout">Logout</button>
         </div>
         <div sec:authorize="isAnonymous()">
-            <a class="btn btn-outline-danger" href="@{/login}" value="Login">Login</a>
+            <a class="btn btn-outline-danger" th:href="@{/login}" value="Login">Login</a>
         </div>
     </form>
 </nav>

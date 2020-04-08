@@ -73,6 +73,13 @@ public class AppUserController {
             model.addAttribute("list", appUserList);
             return "user-details";
         }
+
+        if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("USER"))){
+            Optional<AppUser> appUser1 = service.findByUsername(appUser.getUsername());
+            model.addAttribute("list", appUser1);
+            return "user-details";
+        }
+
         return "redirect:/login";
     }
 

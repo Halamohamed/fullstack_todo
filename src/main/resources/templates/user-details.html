@@ -13,6 +13,8 @@
 </head>
 <body>
 
+    <div th:fragment="details">
+
         <h2>User details</h2>
 
         <div th:each="name: ${list}">
@@ -27,7 +29,7 @@
 
         <a class="btn btn-link" th:href="@{/users/items/create}">Create</a>
 
-
+    </div>
 
 
 </body>
