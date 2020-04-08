@@ -45,7 +45,7 @@ public class MainAppUser {
     public void init(){
         AppUser user = new AppUser("admin", "Hala","Ali",LocalDate.now(),passwordEncoder.encode("admin"));
         Set<AppUserRole> roleSet = Arrays.stream(Roles.values())
-                .map(role -> appUserRole.save(new AppUserRole(role.name())))
+                .map(role -> appUserRole.save(new AppUserRole(role)))
                 .collect(Collectors.toSet());
         user.setRoleSet(roleSet);
 

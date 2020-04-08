@@ -73,7 +73,6 @@ public class AppUserController {
             model.addAttribute("list", appUserList);
             return "user-details";
         }
-
         if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("USER"))){
             Optional<AppUser> appUser1 = service.findByUsername(appUser.getUsername());
             model.addAttribute("list", appUser1);
@@ -93,8 +92,9 @@ public class AppUserController {
         if(user == null){
             return "redirect:/login";
         }
-        if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN"))
-        ){
+        if(appUser.getUsername().equals(user.getUsername()) || user.getAuthorities().stream().allMatch(auth -> auth.getAuthority().equals("ADMIN")
+                || user.getAuthorities().stream().allMatch(autho -> autho.getAuthority().equals("USER"))
+        )){
             Optional<AppUser> optionalAppUser = service.findByUsername(appUser.getUsername());
             if(optionalAppUser.isPresent()){
                 AppUser appUser1 = service.findByUsername(appUser.getUsername()).get();
@@ -106,7 +106,7 @@ public class AppUserController {
             }
 
         }
-            return "error-page";
+            return "oneUser";
 
     }
     @GetMapping("users/search")

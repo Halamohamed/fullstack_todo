@@ -103,7 +103,7 @@ public class TodoItemController {
         todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());
 
         TodoItem todoItem = todoItemService.save(todo1);
-        return "redirect:/users/items";
+        return "users/items/";
     }
 
 

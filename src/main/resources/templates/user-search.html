@@ -13,21 +13,23 @@
 </head>
 <body>
 
-    <h2>User search</h2>
+    <div class="container">
 
-    <form action="#" th:action="@{/users/search}" th:object="${appUser}" method="post">
-        <table border="1">
-            <tr>
-                <td><label for="username" >Username</label></td>
-                <td><input type="text" id="username" name="username"  placeholder="Enter username"/></td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="Search" /></td>
-            </tr>
-        </table>
-    </form>
+        <h2>User search</h2>
 
+        <form action="#" th:action="@{/users/search}" th:object="${appUser}" method="post">
+            <table border="1">
+                <tr>
+                    <td><label for="username" >Username</label></td>
+                    <td><input type="text" id="username" name="username"  placeholder="Enter username"/></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Search" /></td>
+                </tr>
+            </table>
+        </form>
 
+    </div>
 
 
 

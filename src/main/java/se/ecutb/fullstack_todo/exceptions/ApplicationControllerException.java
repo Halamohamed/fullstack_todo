@@ -1,6 +1,7 @@
 package se.ecutb.fullstack_todo.exceptions;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -13,8 +14,8 @@ public class ApplicationControllerException {
 
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ModelAndView handleAppResourceNotFoundException(IllegalArgumentException ex){
+    @ExceptionHandler(UsernameNotFoundException.class)
+    public ModelAndView handleAppResourceNotFoundException(UsernameNotFoundException ex){
         return createModel(HttpStatus.NOT_FOUND, ex);
     }
 

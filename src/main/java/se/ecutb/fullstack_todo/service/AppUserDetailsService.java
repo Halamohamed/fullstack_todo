@@ -35,7 +35,7 @@ public class AppUserDetailsService implements UserDetailsService {
             AppUser user = userOptional.get();
             Collection<GrantedAuthority> collection = new HashSet<>();
             for(AppUserRole userRole : user.getRoleSet()){
-                collection.add(new SimpleGrantedAuthority(userRole.getRole()));
+                collection.add(new SimpleGrantedAuthority(userRole.getRole().name()));
             }
             return new AppUserDetails(user,collection);
         }else {

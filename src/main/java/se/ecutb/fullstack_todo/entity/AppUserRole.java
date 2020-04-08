@@ -12,11 +12,11 @@ public class AppUserRole {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleId;
     @Column(unique = true)
-    private String role;
+    private Roles role;
 
 
 
-    public AppUserRole(String role) {
+    public AppUserRole(Roles role) {
         this.role = role;
     }
 
@@ -32,11 +32,11 @@ public class AppUserRole {
         this.roleId = roleId;
     }
 
-    public String getRole() {
+    public Roles getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Roles role) {
         this.role = role;
     }
 
