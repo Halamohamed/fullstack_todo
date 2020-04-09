@@ -15,17 +15,55 @@
 <!--    <form th:action="@{id=${form.itemId}} " th:object="${form}" method="post">-->
     <form th:action="@{/users/items/{id}/update (id=${form.itemId})}" th:object="${form}" method="post">
     <input type="hidden" th:value="${form.itemId}" th:field="*{itemId}"/>
+        <label for="username">Assigned to: </label>
+        <input class="form-control" type="text" id="username" th:field="*{username}"/>
+        <div th:if="${#fields.hasErrors('username')}">
+            <ul class="p-0" >
+                <li  th:each="err : ${#fields.errors('username')}">
+                    <span class="form-error" th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
+
         <label for="itemTitle">Title: </label>
         <input class="form-control" type="text" id="itemTitle" th:field="*{itemTitle}"/>
+        <div th:if="${#fields.hasErrors('itemTitle')}">
+            <ul class="p-0" >
+                <li  th:each="err : ${#fields.errors('itemTitle')}">
+                    <span class="form-error" th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
 
         <label for="description">Description: </label>
         <input class="form-control" type="text" id="description" th:field="*{itemDescription}"/>
+        <div th:if="${#fields.hasErrors('itemDescription')}">
+            <ul class="p-0" >
+                <li  th:each="err : ${#fields.errors('itemDescription')}">
+                    <span class="form-error" th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
 
         <label for="status">Status: </label>
         <input class="form-control" type="text" id="status" th:field="*{doneStatus}"/>
+        <div th:if="${#fields.hasErrors('doneStatus')}">
+            <ul class="p-0" >
+                <li  th:each="err : ${#fields.errors('doneStatus')}">
+                    <span class="form-error" th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
 
         <label for="reward">Reward: </label>
         <input class="form-control" type="number" id="reward" th:field="*{reward}"/>
+        <div th:if="${#fields.hasErrors('reward')}">
+            <ul class="p-0" >
+                <li  th:each="err : ${#fields.errors('reward')}">
+                    <span class="form-error" th:text="${err}"></span>
+                </li>
+            </ul>
+        </div>
 
         <button class="btn btn-primary" type="submit"> update</button>
     </form>

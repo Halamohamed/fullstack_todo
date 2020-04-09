@@ -14,6 +14,7 @@ public class TodoItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int itemId;
+    @Column(unique = true)
     private String itemTitle;
     private String itemDescription;
     private LocalDate deadline;

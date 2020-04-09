@@ -18,10 +18,10 @@
         <h2>User details</h2>
 
         <div th:each="name: ${list}">
-            <p>First name</p>
-            <p th:text="${name.firstName}"></p>
-            <p>Last name</p>
-            <p th:text="${name.lastName}"></p>
+            <p>Username:</p>
+            <p th:text="${name.username}"></p>
+            <p>Todo items</p>
+            <p th:text="${name.todoItems}"></p>
             <p>Registration date</p>
             <p th:text="${name.regDate}"></p>
 

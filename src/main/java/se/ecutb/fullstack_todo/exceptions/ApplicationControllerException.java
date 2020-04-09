@@ -28,8 +28,8 @@ public class ApplicationControllerException {
     private ModelAndView createModel(HttpStatus status, Exception ex){
         ModelAndView model = new ModelAndView();
         Map<Object, Object> map = new HashMap<>();
-        map.put("statusname", status.getReasonPhrase());
-        map.put("statuscode", status.value());
+        map.put("statusName", status.getReasonPhrase());
+        map.put("statusCode", status.value());
         map.put("message", ex.getMessage());
         model.setViewName("error-page");
         model.addObject("modelMap", map);

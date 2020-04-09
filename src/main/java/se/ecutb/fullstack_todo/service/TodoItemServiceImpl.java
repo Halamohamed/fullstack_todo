@@ -81,7 +81,7 @@ public class TodoItemServiceImpl implements TodoItemService {
           throw new IllegalArgumentException("Todo item not found");
       }
       TodoItem newItem = findByItemId(todoItemForm.getItemId());
-//      newItem.setUserName(todoItemForm.getUserName());
+      newItem.setUserName(todoItemForm.getUsername());
       newItem.setItemDescription(todoItemForm.getItemDescription());
       newItem.setDeadline(todoItemForm.getDeadline());
       newItem.setDoneStatus(todoItemForm.isDoneStatus());

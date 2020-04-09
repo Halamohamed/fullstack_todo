@@ -81,7 +81,7 @@ public class TodoItemController {
     public String getItems(@ModelAttribute("itemList") Model model){
 
         List<TodoItem> itemList = todoItemService.findAllUnAssigned();
-        if (String.valueOf(itemList.get(0).getItemId()) != null){      //if (itemList.get(0).getItemId() != 0){
+        if (itemList.get(0).getItemId() != 0){
             throw new IllegalArgumentException("Not found");
         }
         model.addAttribute("itemList", itemList);
@@ -100,7 +100,7 @@ public class TodoItemController {
     public String update(@PathVariable("id") int id,@ModelAttribute("form") TodoItemForm item){
 
     todoItemService.updateItem(item);
-        return "redirect:/users/items/details";
+        return "redirect:/users/items";
     }
 
 

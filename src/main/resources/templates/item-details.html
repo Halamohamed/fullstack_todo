@@ -14,20 +14,25 @@
 
     <div class="container" >
 
-        <form th:action="@{/users/items/details}" th:object="${itemList}" th:method="get">
-            <label for="itemId">Item id:</label>
-            <input th:text ="${#numbers.itemList.getItemId()}" value="${itemList.itemId}" id="itemId" name="itemId" />
-            <label for="itemTitle">Item Title:</label>
-            <input th:text="itemList.getItemTitle()" id="itemTitle" name="itemTitle" />
-            <label for="description">Item Description:</label>
-            <input th:text="itemList.getItemDescription()" id="description" name="description" />
-            <label for="deadline">Deadline:</label>
-            <input th:text="itemList.getDeadline()" id="deadline" name="deadline" />
-            <label for="status">Item Status:</label>
-            <input th:text="itemList.isDoneStatus()" id="status" name="status" />
-            <label for="reward">Reward:</label>
-            <input th:text="itemList.getReward()" id="reward" name="reward" />
-        </form>
+        <table >
+            <!--<label for="itemId">Item id:</label>
+            <input th:#numbers="itemList.getItemId()" value="${itemList.itemId}" id="itemId" name="itemId" />-->
+            <tr for="itemTitle">Item Title:
+            <td th:text="itemTitle"  id="itemTitle" name="itemTitle" ></td>
+            </tr>
+            <tr for="description">Item Description:
+            <td th:text="itemDescription" id="description" name="itemDescription" ></td>
+            </tr>
+            <tr for="deadline">Deadline:
+            <td th:text="deadline" id="deadline" name="deadline" ></td>
+            </tr>
+            <tr for="status">Item Status:
+            <td th:text="doneStatus" id="status" name="doneStatus" ></td>
+            </tr>
+            <tr for="reward">Reward:
+            <td th:text="reward" id="reward" name="reward" ></td>
+            </tr>
+        </table>
 
 
     </div>
