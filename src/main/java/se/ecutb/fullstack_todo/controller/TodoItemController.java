@@ -81,7 +81,7 @@ public class TodoItemController {
     public String getItems(@ModelAttribute("itemList") Model model){
 
         List<TodoItem> itemList = todoItemService.findAllUnAssigned();
-        if (itemList.get(0).getItemId() != 0){
+        if (String.valueOf(itemList.get(0).getItemId()) != null){      //if (itemList.get(0).getItemId() != 0){
             throw new IllegalArgumentException("Not found");
         }
         model.addAttribute("itemList", itemList);
@@ -91,7 +91,7 @@ public class TodoItemController {
     @GetMapping("/users/items/{id}/update")
     public String getUpdate(@PathVariable("id") int id,Model model){
         TodoItem todo1 = todoItemService.findByItemId(id);
-        TodoItemForm todoItemForm= new TodoItemForm(todo1.getItemId(),todo1.getItemTitle(),todo1.getItemDescription(),todo1.getDeadline(),todo1.isDoneStatus(),todo1.getReward());
+        TodoItemForm todoItemForm= new TodoItemForm(todo1.getItemId(), todo1.getUserName(), todo1.getItemTitle(),todo1.getItemDescription(),todo1.getDeadline(),todo1.isDoneStatus(),todo1.getReward());
        model.addAttribute("form",todoItemForm);
        return "update-form";
 
@@ -99,11 +99,8 @@ public class TodoItemController {
     @PostMapping("/users/items/{id}/update")
     public String update(@PathVariable("id") int id,@ModelAttribute("form") TodoItemForm item){
 
-        TodoItem todo1 = todoItemService.findByItemId(id);
-        todo1 = new TodoItem(item.getItemTitle(),item.getItemDescription(),item.getDeadline(),item.isDoneStatus(),item.getReward());
-
-        TodoItem todoItem = todoItemService.save(todo1);
-        return "users/items/";
+    todoItemService.updateItem(item);
+        return "redirect:/users/items/details";
     }
 
 

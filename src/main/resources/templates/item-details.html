@@ -14,9 +14,9 @@
 
     <div class="container" >
 
-        <form >
+        <form th:action="@{/users/items/details}" th:object="${itemList}" th:method="get">
             <label for="itemId">Item id:</label>
-            <input th:hidden="itemList.getItemId()" value="${itemList.itemId}" id="itemId" name="itemId" />
+            <input th:text ="${#numbers.itemList.getItemId()}" value="${itemList.itemId}" id="itemId" name="itemId" />
             <label for="itemTitle">Item Title:</label>
             <input th:text="itemList.getItemTitle()" id="itemTitle" name="itemTitle" />
             <label for="description">Item Description:</label>

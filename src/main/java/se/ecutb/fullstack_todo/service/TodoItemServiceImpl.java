@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import se.ecutb.fullstack_todo.data.AppUserRepository;
 import se.ecutb.fullstack_todo.data.TodoItemRepository;
+import se.ecutb.fullstack_todo.dto.TodoItemForm;
 import se.ecutb.fullstack_todo.entity.AppUser;
 import se.ecutb.fullstack_todo.entity.TodoItem;
 
@@ -75,16 +76,16 @@ public class TodoItemServiceImpl implements TodoItemService {
     }
 
     @Override
-    public TodoItem updateItem(TodoItem todoItem){
-      if(todoItem.getItemId() == 0){
+    public TodoItem updateItem(TodoItemForm todoItemForm){
+      if(todoItemForm.getItemId() == 0){
           throw new IllegalArgumentException("Todo item not found");
       }
-      TodoItem newItem = findByItemId(todoItem.getItemId());
-      newItem.setUserName(todoItem.getUserName());
-      newItem.setItemDescription(todoItem.getItemDescription());
-      newItem.setDeadline(todoItem.getDeadline());
-      newItem.setDoneStatus(todoItem.isDoneStatus());
-      newItem.setReward(todoItem.getReward());
+      TodoItem newItem = findByItemId(todoItemForm.getItemId());
+//      newItem.setUserName(todoItemForm.getUserName());
+      newItem.setItemDescription(todoItemForm.getItemDescription());
+      newItem.setDeadline(todoItemForm.getDeadline());
+      newItem.setDoneStatus(todoItemForm.isDoneStatus());
+      newItem.setReward(todoItemForm.getReward());
 
       return todoItemRepository.save(newItem);
     }

@@ -1,6 +1,7 @@
 package se.ecutb.fullstack_todo.service;
 
 import org.springframework.transaction.annotation.Transactional;
+import se.ecutb.fullstack_todo.dto.TodoItemForm;
 import se.ecutb.fullstack_todo.entity.TodoItem;
 
 import java.util.List;
@@ -21,5 +22,5 @@ public interface TodoItemService {
 
     TodoItem findByTitle(String title);
 
-    TodoItem updateItem(TodoItem todoItem);
+    TodoItem updateItem(TodoItemForm todoItem);
 }

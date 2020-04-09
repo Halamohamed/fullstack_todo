@@ -12,8 +12,9 @@
 <body>
 
 <div class="container">
-    <form th:action="@{id=${form.itemId}} " th:object="${form}" method="post">
-        <input type="hidden" th:value="${form.itemId}" th:field="*{itemId}"/>
+<!--    <form th:action="@{id=${form.itemId}} " th:object="${form}" method="post">-->
+    <form th:action="@{/users/items/{id}/update (id=${form.itemId})}" th:object="${form}" method="post">
+    <input type="hidden" th:value="${form.itemId}" th:field="*{itemId}"/>
         <label for="itemTitle">Title: </label>
         <input class="form-control" type="text" id="itemTitle" th:field="*{itemTitle}"/>
 

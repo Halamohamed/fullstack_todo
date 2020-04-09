@@ -1,5 +1,7 @@
 package se.ecutb.fullstack_todo.dto;
 
+import se.ecutb.fullstack_todo.entity.AppUser;
+
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.NotBlank;
@@ -9,6 +11,7 @@ public class TodoItemForm {
 
 
     private int itemId;
+    private AppUser username;
     @NotBlank(message = "Title is required")
     private String itemTitle;
     @NotBlank(message = "Description must not be null")
@@ -19,8 +22,9 @@ public class TodoItemForm {
     @DecimalMin(value = "1", message = "minimum value is 1")
     private double reward;
 
-    public TodoItemForm(int itemId,  String itemTitle,  String itemDescription,LocalDate deadline, boolean doneStatus, double reward) {
+    public TodoItemForm(int itemId,  AppUser username, String itemTitle,  String itemDescription,LocalDate deadline, boolean doneStatus, double reward) {
         this.itemId = itemId;
+        this.username = username;
         this.itemTitle = itemTitle;
         this.itemDescription = itemDescription;
         this.deadline = deadline;
@@ -37,6 +41,14 @@ public class TodoItemForm {
 
     public void setItemId(int itemId) {
         this.itemId = itemId;
+    }
+
+    public AppUser getUsername() {
+        return username;
+    }
+
+    public void setUsername(AppUser username) {
+        this.username = username;
     }
 
     public String getItemTitle() {
