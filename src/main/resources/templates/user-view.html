@@ -12,7 +12,35 @@
     <title>User details</title>
 </head>
 <body>
-<div>
+<div class="container" >
+
+    <table id="users_table"  class="table">
+
+        <thead>
+        <tr th:align="center">
+            <th>ID</th>
+            <th>Username</th>
+            <th>Deadline</th>
+            <th>Item Status</th>
+            <th>Reward</th>
+        </tr>
+        </thead>
+        <tbody th:each="user : ${#lists}">
+        <tr>
+            <td th:hidden="${user.userId}" ></td>
+            <td th:value="${user.username}"></td>
+            <td th:value="${user.firstName}"></td>
+            <td th:value="${user.lastName}"></td>
+            <td th:value="${user.regDate}"></td>
+
+        </tr>
+        </tbody>
+
+    </table>
+
+
+</div>
+
 
     <p>First name</p>
 <!--    <p th:text="${appUser.firstName}"></p>-->
@@ -20,7 +48,6 @@
 <!--    <p th:text="${appUser.lastName}"></p>-->
 <!--    <p>Registration date</p>-->
 <!--    <p th:text="${appUser.regDate}"></p>-->
-</div>
 
 </body>
 </html>

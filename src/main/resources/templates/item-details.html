@@ -14,24 +14,29 @@
 
     <div class="container" >
 
-        <table >
+        <table id="items_table"  class="table">
             <!--<label for="itemId">Item id:</label>
             <input th:#numbers="itemList.getItemId()" value="${itemList.itemId}" id="itemId" name="itemId" />-->
-            <tr for="itemTitle">Item Title:
-            <td th:text="itemTitle"  id="itemTitle" name="itemTitle" ></td>
+
+            <thead>
+            <tr th:align="center">
+                <th>Item Title</th>
+                <th>Item Description</th>
+                <th>Deadline</th>
+                <th>Item Status</th>
+                <th>Reward</th>
             </tr>
-            <tr for="description">Item Description:
-            <td th:text="itemDescription" id="description" name="itemDescription" ></td>
+            </thead>
+            <tbody th:each="item : ${itemList}">
+            <tr>
+                <td th:value="${item.itemTitle}"></td>
+                <td th:value="${item.itemDescription}"></td>
+                <td th:value="${item.deadline}"></td>
+                <td th:value="${item.doneStatus}"></td>
+                <td th:value="${item.reward}"></td>
             </tr>
-            <tr for="deadline">Deadline:
-            <td th:text="deadline" id="deadline" name="deadline" ></td>
-            </tr>
-            <tr for="status">Item Status:
-            <td th:text="doneStatus" id="status" name="doneStatus" ></td>
-            </tr>
-            <tr for="reward">Reward:
-            <td th:text="reward" id="reward" name="reward" ></td>
-            </tr>
+            </tbody>
+
         </table>
 
 
@@ -43,3 +48,21 @@
 
 </body>
 </html>
+<!--
+
+
+<tr for="itemTitle">Item Title:
+    <td th:text="itemTitle"  id="itemTitle" name="itemTitle" ></td>
+</tr>
+<tr for="description">Item Description:
+    <td th:text="itemDescription" id="description" name="itemDescription" ></td>
+</tr>
+<tr for="deadline">Deadline:
+    <td th:text="deadline" id="deadline" name="deadline" ></td>
+</tr>
+<tr for="status">Item Status:
+    <td th:text="doneStatus" id="status" name="doneStatus" ></td>
+</tr>
+<tr for="reward">Reward:
+    <td th:text="reward" id="reward" name="reward" ></td>
+</tr>-->
